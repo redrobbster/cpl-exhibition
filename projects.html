@@ -37,8 +37,7 @@
       color: var(--text-color); /* 텍스트색 변수 사용 */
       transition: background 0.3s, color 0.3s;
     }
-
-    /* HEADER 스타일 수정: Flexbox를 사용하여 수직 정렬 및 요소 간 공간 확보 */
+    
     header {
       text-align: center; 
       padding: 1.5rem 1rem;
@@ -49,13 +48,11 @@
       flex-direction: column; /* 세로로 배치 */
     } 
 
-    /* 제목 스타일 수정: margin-top 추가 */
     h1 {
       margin: 1rem 0 0; /* 위쪽에 마진 추가 */
       order: 2; /* 제목을 두 번째로 배치 */
     }
 
-    /* 헤더 컨트롤 (버튼 컨테이너) 스타일 추가 */
     .header-controls {
       display: flex;
       justify-content: space-between; /* 버튼들을 양 끝으로 배치 */
@@ -65,7 +62,6 @@
       margin-bottom: 0.5rem; /* 제목과의 간격 */
     }
 
-    /* 모드 바꾸기 버튼 스타일 (Header에 있음) */
     #themeToggle {
       transition: background 0.3s, color 0.3s;
       position: static;
@@ -77,7 +73,6 @@
       cursor: pointer;
     }
 
-    /* 뒤로가기 버튼 스타일 */
     .back-btn {
       position: static; 
       transform: none;
@@ -186,10 +181,14 @@
         gap: 25px; /* 이미지와 콘텐츠 사이 간격 */
     }
     
-    /* ★ 모달 이미지 컨테이너 (왼쪽) */
+    /* ★ 모달 이미지 컨테이너 (왼쪽) - 수정된 부분 */
     .modal-image-area {
         flex: 1; /* 가용 공간의 절반 */
         min-width: 40%;
+        /* 사진을 수직/수평 중앙에 위치시키기 위해 Flexbox 추가 */
+        display: flex; 
+        justify-content: center; 
+        align-items: center; /* 세로 중앙 정렬의 핵심 */
     }
 
     /* ★ 모달 텍스트 콘텐츠 컨테이너 (오른쪽) */
@@ -198,12 +197,13 @@
         min-width: 40%;
     }
 
-    /* 모달 이미지 스타일 */
+    /* 모달 이미지 스타일 - 수정된 부분 */
     .modal-img {
         max-width: 100%; 
         height: auto; 
         border-radius: 8px; 
-        margin-bottom: 15px; 
+        /* margin-bottom 제거 (Flexbox 정렬에 의해 상하 중앙 정렬됨) */
+        margin-bottom: 0; 
         display: block; 
     }
 
@@ -238,9 +238,7 @@
         🌗 모드 바꾸기
       </button>
     </div>
-    
     <h1>CPL 작품 전시</h1>
-    
   </header>
   <div class="tabs">
     <div class="tab active" data-type="all">전체</div>
@@ -325,7 +323,7 @@
       if (p.poster) {
           posterImg.src = p.poster;
           posterImg.style.display = 'block';
-          imageArea.style.display = 'block';
+          imageArea.style.display = 'flex'; // 이미지 영역이 flex로 설정되도록 수정
       } else {
           // 이미지가 없으면 이미지 영역 전체를 숨기고 텍스트 영역을 확장
           imageArea.style.display = 'none';
