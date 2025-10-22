@@ -1,167 +1,400 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>CPL 동아리 | 축제 전시</title>
- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
- <style>
-  /* 1. 기본 밝은 테마 (갈색) 정의 */
-  :root {
-   --primary-color: #A0522D; /* 갈색 */
-   --primary-hover: #8B4513; /* 진한 갈색 */
-   --text-color: #333;
-   --bg-color: #fff;
-   --header-bg: #D2B48C; /* 밝은 갈색을 헤더 배경으로 사용 */
-   --link-color: #A0522D;
-  }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPL 작품 전시</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* 1. 기본 밝은 테마 (갈색) 정의 */
+    :root {
+      --primary-color: #A0522D; /* 갈색 */
+      --primary-hover: #8B4513; /* 진한 갈색 */
+      --text-color: #333;
+      --bg-color: #fff;
+      --card-bg: #fdfdfd;
+      --tab-bg: #f0f0f0;
+      --header-bg: #fff;
+      --card-border: #eee;
+    }
 
-  /* 2. 어두운 테마 클래스 정의 (민트색 기반) */
-  .dark-mode {
-   --primary-color: #6ee7b7; /* 민트색 */
-   --primary-hover: #37c793;
-   --text-color: #e6eef6;
-   --bg-color: #0f172a; /* 짙은 파랑 */
-   --header-bg: #1e293b; /* 어두운 회색 */
-   --link-color: #6ee7b7;
-  }
+    /* 2. 어두운 테마 클래스 정의 */
+    .dark-mode {
+      --primary-color: #6ee7b7; /* 민트색 */
+      --primary-hover: #37c793;
+      --text-color: #e6eef6;
+      --bg-color: #0f172a; /* 짙은 파랑 */
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --tab-bg: rgba(255, 255, 200, 0.1);
+      --header-bg: #0f172a;
+      --card-border: rgba(255, 255, 255, 0.1);
+    }
 
-  body {
-   font-family: 'Noto Sans KR', sans-serif;
-   background: var(--bg-color);
-   color: var(--text-color);
-   text-align: center;
-   margin: 0;
-   padding: 0;
-   transition: background 0.3s, color 0.3s;
-  }
-  header {
-   background: var(--header-bg);
-   padding: 2rem 1rem;
-   position: relative; /* 버튼 배치를 위해 추가 */
-  }
-  header img {
-   width: 150px;
-   height: 150px;
-   border-radius: 20%;
-  }
-  h1 {
-   margin: 1rem 0 0.5rem;
-   font-size: 2rem;
-  }
-  p {
-   max-width: 700px;
-   margin: 0.5rem auto;
-   line-height: 1.6;
-  }
-  section {
-   margin: 3rem auto;
-   max-width: 700px;
-   text-align: left;
-   padding: 0 1rem;
-  }
-  button {
-   background: var(--primary-color);
-   color: var(--bg-color); /* 텍스트는 배경색과 반대로 설정 */
-   border: none;
-   padding: 1rem 2rem;
-   border-radius: 10px;
-   cursor: pointer;
-   font-size: 1.1rem;
-   font-weight: 600;
-   margin: 2rem 0;
-   transition: 0.2s;
-  }
-  button:hover {
-   background: var(--primary-hover);
-  }
-  a {
-   color: var(--link-color);
-   text-decoration: none;
-   font-weight: 600;
-  }
-  a:hover {
-   text-decoration: underline;
-  }
- </style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0; 
+      background: var(--bg-color); /* 배경색 변수 사용 */
+      color: var(--text-color); /* 텍스트색 변수 사용 */
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* HEADER 스타일 수정: Flexbox를 사용하여 수직 정렬 및 요소 간 공간 확보 */
+    header {
+      text-align: center; 
+      padding: 1.5rem 1rem;
+      border-bottom: 1px solid var(--card-border); 
+      position: relative;
+      background: var(--header-bg); /* 헤더 배경색 변수 사용 */
+      display: flex;
+      flex-direction: column; /* 세로로 배치 */
+    } 
+
+    /* 제목 스타일 수정: margin-top 추가 */
+    h1 {
+      margin: 1rem 0 0; /* 위쪽에 마진 추가 */
+      order: 2; /* 제목을 두 번째로 배치 */
+    }
+
+    /* 헤더 컨트롤 (버튼 컨테이너) 스타일 추가 */
+    .header-controls {
+      display: flex;
+      justify-content: space-between; /* 버튼들을 양 끝으로 배치 */
+      align-items: center;
+      width: 100%;
+      order: 1; /* 버튼 컨테이너를 첫 번째로 배치 */
+      margin-bottom: 0.5rem; /* 제목과의 간격 */
+    }
+
+    /* 모드 바꾸기 버튼 스타일 (Header에 있음) */
+    #themeToggle {
+      transition: background 0.3s, color 0.3s;
+      position: static;
+      transform: none;
+      padding: 0.5rem 1rem; 
+      border: none; 
+      border-radius: 8px; 
+      font-weight: 600; 
+      cursor: pointer;
+    }
+
+    /* 뒤로가기 버튼 스타일 */
+    .back-btn {
+      position: static; 
+      transform: none;
+      padding: 0.5rem 1rem; 
+      background: var(--primary-color); 
+      color: var(--bg-color); 
+      border-radius: 8px; 
+      font-weight: 600; 
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .back-btn:hover {
+      background: var(--primary-hover); 
+    }
+    .tabs {
+      display: flex; 
+      justify-content: center; 
+      gap: 12px; 
+      margin: 20px 0;
+    }
+    .tab {
+      padding: 8px 18px; 
+      border-radius: 12px; 
+      background: var(--tab-bg); 
+      color: var(--text-color);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .tab.active {
+      background: var(--primary-color); 
+      color: var(--bg-color); 
+      font-weight: 600;
+    }
+    .search-box {
+      text-align: center; 
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 10px; 
+      width: 240px; 
+      border-radius: 8px; 
+      border: 1px solid #ddd; 
+      background: var(--tab-bg); 
+      color: var(--text-color);
+      outline: none;
+    }
+    .grid {
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+      gap: 16px; 
+      padding: 20px;
+    }
+    .card {
+      background: var(--card-bg); 
+      border: 1px solid var(--card-border); 
+      border-radius: 12px; 
+      padding: 16px; 
+      cursor: pointer; 
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .thumb {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 비율 유지 */
+      border-radius: 10px; 
+      background: var(--tab-bg); 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      color: var(--text-color);
+    }
+    .thumb img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+      border-radius: 10px;
+    }
+    .modal-bg {
+      position: fixed; 
+      inset: 0; 
+      background: rgba(0, 0, 0, 0.4); 
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal {
+      background: var(--bg-color); 
+      padding: 25px; 
+      border-radius: 12px; 
+      max-width: 750px; /* 모달 너비 확장 */
+      width: 90%;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      text-align: left;
+    }
+    
+    /* ★ 모달 내부 레이아웃을 위한 Flexbox 컨테이너 */
+    .modal-content-wrapper {
+        display: flex;
+        gap: 25px; /* 이미지와 콘텐츠 사이 간격 */
+    }
+    
+    /* ★ 모달 이미지 컨테이너 (왼쪽) */
+    .modal-image-area {
+        flex: 1; /* 가용 공간의 절반 */
+        min-width: 40%;
+    }
+
+    /* ★ 모달 텍스트 콘텐츠 컨테이너 (오른쪽) */
+    .modal-text-area {
+        flex: 1; /* 가용 공간의 절반 */
+        min-width: 40%;
+    }
+
+    /* 모달 이미지 스타일 */
+    .modal-img {
+        max-width: 100%; 
+        height: auto; 
+        border-radius: 8px; 
+        margin-bottom: 15px; 
+        display: block; 
+    }
+
+    .close {
+      float: right; 
+      cursor: pointer; 
+      color: #999; 
+      font-size: 1.2rem;
+    }
+    .btn {
+      padding: 10px 20px; 
+      border: none; 
+      border-radius: 8px; 
+      background: var(--primary-color); 
+      color: var(--bg-color); 
+      cursor: pointer; 
+      font-weight: 600;
+      transition: 0.2s;
+      display: block;
+      width: 100%;
+    }
+    .btn:hover {
+      background: var(--primary-hover); 
+    }
+  </style>
 </head>
-<body id="page-body">
- <header>
-  <button id="themeToggle" style="position: absolute; right: 20px; top: 20px; padding: 0.5rem 1rem; background: rgba(0,0,0,0.1); border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
-    🌗 모드 바꾸기
-  </button>
-  
-  <img src="images/logo.png" alt="CPL 로고">
-  <h1>CPL 동아리</h1>
-  <p>Creative Programming League — 프로그래밍을 통해 세상을 바꾸는 대광고등학교의 기술 동아리</p>
- </header>
+<body>
+  <header>
+    <div class="header-controls">
+      <a href="index.html" class="back-btn">← 메인으로</a>
+      <button id="themeToggle">
+        🌗 모드 바꾸기
+      </button>
+    </div>
+    
+    <h1>CPL 작품 전시</h1>
+    
+  </header>
+  <div class="tabs">
+    <div class="tab active" data-type="all">전체</div>
+    <div class="tab" data-type="game">게임</div>
+    <div class="tab" data-type="web">웹</div>
+  </div>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="학번, 이름 또는 제목 검색">
+  </div>
+  <div class="grid" id="grid"></div>
 
- <section>
-  <h2>동아리 소개</h2>
-  <p>
-   (예: CPL은 다양한 분야의 창의적인 소프트웨어를 만드는 동아리로, 웹·게임·IoT 등 여러 프로젝트를 진행하고 있습니다.)
-  </p>
- </section>
+  <template id="modalTemplate">
+    <div class="modal-bg">
+      <div class="modal">
+        <span class="close">✕</span>
+        
+        <div class="modal-content-wrapper">
+            <div class="modal-image-area">
+                <img id="m-poster" src="" alt="작품 포스터" class="modal-img" style="display:none;">
+            </div>
 
- <section>
-  <h2>오시는 길</h2>
-  <p>
-   (예: 과학관 2층 복도 오른쪽 끝 CPL 부스)
-  </p>
-  <p>
-   <a href="https://bbbat17.github.io/Daegwanghighschoolmap/" target="_blank">
-     ▶ 대광고등학교 지도 보기
-   </a>
-  </p>
- </section>
+            <div class="modal-text-area">
+                <h2 id="m-title"></h2>
+                <p style="color:#666; font-size:0.9rem;" id="m-creators"></p>
+                <p style="margin-top:1rem;" id="m-desc"></p>
+                <div style="text-align:center; margin-top:20px;">
+                    <button class="btn" id="m-action"></button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </template>
 
- <div style="text-align:center;">
-  <button onclick="location.href='projects.html'">🎨 작품 보기</button>
- </div>
- 
- <script>
-  // **********************************
-  // ★ 테마 전환 기능 (projects.html과 공유)
-  // **********************************
-  const body = document.getElementById('page-body');
-  const themeToggle = document.getElementById('themeToggle');
-  const STORAGE_KEY = 'cplThemeMode';
+  <script>
+    let allProjects = [];
+    let currentTab = 'all';
+    const STORAGE_KEY = 'cplThemeMode';
 
-  // 1. 초기 테마 설정
-  function setInitialTheme() {
-      const savedTheme = localStorage.getItem(STORAGE_KEY) || 'light';
-      if (savedTheme === 'dark') {
-          body.classList.add('dark-mode');
-          themeToggle.textContent = '☀️ 모드 바꾸기';
-          themeToggle.style.color = '#e6eef6';
-          themeToggle.style.background = 'rgba(255, 255, 255, 0.1)';
-      } else {
-          themeToggle.textContent = '🌑 모드 바꾸기';
-          themeToggle.style.color = '#333';
-          themeToggle.style.background = 'rgba(0, 0, 0, 0.1)';
+    async function loadProjects() {
+      try {
+      // projects.json의 구조가 변경되었다고 가정하고 로직을 수정합니다.
+      const res = await fetch('projects.json');
+      if (!res.ok) throw new Error('파일을 불러올 수 없습니다');
+      allProjects = await res.json();
+      render();
+      } catch (e) {
+      console.error(e);
+      // alert('projects.json 파일을 찾을 수 없습니다. 같은 폴더에 있는지 확인하세요.');
       }
-  }
+    }
 
-  // 2. 테마 전환 핸들러
-  function toggleTheme() {
-      body.classList.toggle('dark-mode');
-      const newTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-      localStorage.setItem(STORAGE_KEY, newTheme);
+    function render() {
+      const grid = document.getElementById('grid');
+      const searchVal = document.getElementById('search').value.toLowerCase();
+      grid.innerHTML = '';
+      const filtered = allProjects.filter(p => {
+      const matchesTab = currentTab === 'all' || p.type === currentTab;
+      const text = (p.title + p.description + p.type + p.creators.map(c=>c.name+c.id).join('')).toLowerCase();
+      const matchesSearch = text.includes(searchVal);
+      return matchesTab && matchesSearch;
+      });
+      filtered.forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'card';
       
-      if (newTheme === 'dark') {
-          themeToggle.textContent = '☀️ 모드 바꾸기';
-          themeToggle.style.color = '#e6eef6';
-          themeToggle.style.background = 'rgba(255, 255, 255, 0.1)';
-      } else {
-          themeToggle.textContent = '🌑 모드 바꾸기';
-          themeToggle.style.color = '#333';
-          themeToggle.style.background = 'rgba(0, 0, 0, 0.1)';
-      }
-  }
+      // p.preview_poster를 사용하여 미리보기 이미지 설정
+      const previewSrc = p.preview_poster || p.poster; // preview_poster가 없으면 기존 poster 사용
+      div.innerHTML = `<div class='thumb'>${previewSrc ? `<img src='${previewSrc}' alt='${p.title} 미리보기'>` : '포스터 없음'}</div><h3>${p.title}</h3><p style='color:#777; font-size:0.9rem;'>${p.creators.map(c=>c.name).join(', ')}</p>`;
+      div.onclick = () => openModal(p);
+      grid.appendChild(div);
+      });
+    }
 
-  // 3. 이벤트 리스너 연결 및 초기화
-  themeToggle.addEventListener('click', toggleTheme);
-  setInitialTheme(); 
- </script>
+    function openModal(p){
+      const tpl = document.getElementById('modalTemplate').content.cloneNode(true);
+      const bg = tpl.querySelector('.modal-bg');
+      const imageArea = tpl.querySelector('.modal-image-area');
+      const posterImg = tpl.getElementById('m-poster'); 
+      
+      // p.poster를 사용하여 팝업 이미지 설정
+      if (p.poster) {
+          posterImg.src = p.poster;
+          posterImg.style.display = 'block';
+          imageArea.style.display = 'block';
+      } else {
+          // 이미지가 없으면 이미지 영역 전체를 숨기고 텍스트 영역을 확장
+          imageArea.style.display = 'none';
+          tpl.querySelector('.modal-content-wrapper').style.display = 'block';
+          tpl.querySelector('.modal-text-area').style.maxWidth = '100%';
+          tpl.querySelector('.modal-text-area').style.width = '100%';
+      }
+
+      tpl.getElementById('m-title').textContent = p.title;
+      tpl.getElementById('m-creators').textContent = p.creators.map(c => `${c.name} (${c.id})`).join(', ');
+      tpl.getElementById('m-desc').textContent = p.description;
+      const btn = tpl.getElementById('m-action');
+      if(p.type === 'web'){
+      btn.textContent = '🌐 링크 보기';
+      btn.onclick = () => window.open(p.info,'_blank');
+      } else {
+      btn.textContent = '🎮 플레이 위치 보기';
+      btn.onclick = () => alert(p.info);
+      }
+      tpl.querySelector('.close').onclick = () => bg.remove();
+      bg.onclick = e => {if(e.target===bg) bg.remove();};
+      document.body.appendChild(bg);
+    }
+
+    // **********************************
+    // ★ 테마 전환 기능 (기존 유지)
+    // **********************************
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+
+    // 1. 초기 테마 설정
+    function setInitialTheme() {
+        const savedTheme = localStorage.getItem(STORAGE_KEY) || 'light';
+        const isDark = savedTheme === 'dark';
+        
+        if (isDark) {
+            body.classList.add('dark-mode');
+        }
+        // 버튼 색상 및 텍스트 업데이트 (CSS 변수와 무관한 인라인 스타일)
+        themeToggle.textContent = isDark ? '☀️ 모드 바꾸기' : '🌑 모드 바꾸기';
+        themeToggle.style.background = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+        themeToggle.style.color = isDark ? 'var(--text-color)' : 'var(--text-color)';
+    }
+
+    // 2. 테마 전환 핸들러
+    function toggleTheme() {
+        body.classList.toggle('dark-mode');
+        const newTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem(STORAGE_KEY, newTheme);
+        
+        themeToggle.textContent = newTheme === 'dark' ? '☀️ 모드 바꾸기' : '🌑 모드 바꾸기';
+        themeToggle.style.background = newTheme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+    }
+
+    // 3. 이벤트 리스너 연결 및 초기화
+    themeToggle.addEventListener('click', toggleTheme);
+    setInitialTheme(); 
+
+    document.getElementById('search').addEventListener('input', render);
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.onclick = () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentTab = tab.dataset.type;
+      render();
+      };
+    });
+
+    loadProjects();
+  </script>
 </body>
 </html>
