@@ -7,5 +7,15 @@
     "preview_poster": "images/logo_team1-2.png",
     "poster": "images/logo_team1.png",
     "info": "https://dailyplanner-demo.netlify.app"
+  },
+  {
+    "title": "대광고 지도",
+    "type": "web",
+    "description": "대광고등학교의 짇를 html과 css만을 이용해 만들었습니다",
+    "creators": [{"name": "이준민", "id": "10414"}],
+    "preview_poster": "",
+    "poster": "",
+    "info": "https://bbbat17.github.io/Daegwanghighschoolmap/"
   }
 ]
+
