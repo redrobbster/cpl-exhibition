@@ -1,0 +1,11 @@
+[
+  {
+    "title": "GlitchBound",
+    "type": "game",
+    "description": "'나는 잘 했는데 이 게임때문에!!' 당신에게 도전적인 정신이 들게끔 하는 2D 플랫포머 게임",
+    "creators": [{"name": "한지완", "id": "10623"}],
+    "preview_poster": "images/logo_team1-2.png",
+    "poster": "images/logo_team1.png",
+    "info": "https://dailyplanner-demo.netlify.app"
+  }
+]

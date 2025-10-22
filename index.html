@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>CPL 동아리 | 축제 전시</title>
+ <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+ <style>
+  /* 1. 기본 밝은 테마 (갈색) 정의 */
+  :root {
+   --primary-color: #A0522D; /* 갈색 */
+   --primary-hover: #8B4513; /* 진한 갈색 */
+   --text-color: #333;
+   --bg-color: #fff;
+   --header-bg: #D2B48C; /* 밝은 갈색을 헤더 배경으로 사용 */
+   --link-color: #A0522D;
+  }
+
+  /* 2. 어두운 테마 클래스 정의 (민트색 기반) */
+  .dark-mode {
+   --primary-color: #6ee7b7; /* 민트색 */
+   --primary-hover: #37c793;
+   --text-color: #e6eef6;
+   --bg-color: #0f172a; /* 짙은 파랑 */
+   --header-bg: #1e293b; /* 어두운 회색 */
+   --link-color: #6ee7b7;
+  }
+
+  body {
+   font-family: 'Noto Sans KR', sans-serif;
+   background: var(--bg-color);
+   color: var(--text-color);
+   text-align: center;
+   margin: 0;
+   padding: 0;
+   transition: background 0.3s, color 0.3s;
+  }
+  header {
+   background: var(--header-bg);
+   padding: 2rem 1rem;
+   position: relative; /* 버튼 배치를 위해 추가 */
+  }
+  header img {
+   width: 150px;
+   height: 150px;
+   border-radius: 20%;
+  }
+  h1 {
+   margin: 1rem 0 0.5rem;
+   font-size: 2rem;
+  }
+  p {
+   max-width: 700px;
+   margin: 0.5rem auto;
+   line-height: 1.6;
+  }
+  section {
+   margin: 3rem auto;
+   max-width: 700px;
+   text-align: left;
+   padding: 0 1rem;
+  }
+  button {
+   background: var(--primary-color);
+   color: var(--bg-color); /* 텍스트는 배경색과 반대로 설정 */
+   border: none;
+   padding: 1rem 2rem;
+   border-radius: 10px;
+   cursor: pointer;
+   font-size: 1.1rem;
+   font-weight: 600;
+   margin: 2rem 0;
+   transition: 0.2s;
+  }
+  button:hover {
+   background: var(--primary-hover);
+  }
+  a {
+   color: var(--link-color);
+   text-decoration: none;
+   font-weight: 600;
+  }
+  a:hover {
+   text-decoration: underline;
+  }
+ </style>
+</head>
+<body id="page-body">
+ <header>
+  <button id="themeToggle" style="position: absolute; right: 20px; top: 20px; padding: 0.5rem 1rem; background: rgba(0,0,0,0.1); border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+    🌗 모드 바꾸기
+  </button>
+  
+  <img src="images/logo.png" alt="CPL 로고">
+  <h1>CPL 동아리</h1>
+  <p>Creative Programming League — 프로그래밍을 통해 세상을 바꾸는 대광고등학교의 기술 동아리</p>
+ </header>
+
+ <section>
+  <h2>동아리 소개</h2>
+  <p>
+   (예: CPL은 다양한 분야의 창의적인 소프트웨어를 만드는 동아리로, 웹·게임·IoT 등 여러 프로젝트를 진행하고 있습니다.)
+  </p>
+ </section>
+
+ <section>
+  <h2>오시는 길</h2>
+  <p>
+   (예: 과학관 2층 복도 오른쪽 끝 CPL 부스)
+  </p>
+  <p>
+   <a href="https://bbbat17.github.io/Daegwanghighschoolmap/" target="_blank">
+     ▶ 대광고등학교 지도 보기
+   </a>
+  </p>
+ </section>
+
+ <div style="text-align:center;">
+  <button onclick="location.href='projects.html'">🎨 작품 보기</button>
+ </div>
+ 
+ <script>
+  // **********************************
+  // ★ 테마 전환 기능 (projects.html과 공유)
+  // **********************************
+  const body = document.getElementById('page-body');
+  const themeToggle = document.getElementById('themeToggle');
+  const STORAGE_KEY = 'cplThemeMode';
+
+  // 1. 초기 테마 설정
+  function setInitialTheme() {
+      const savedTheme = localStorage.getItem(STORAGE_KEY) || 'light';
+      if (savedTheme === 'dark') {
+          body.classList.add('dark-mode');
+          themeToggle.textContent = '☀️ 모드 바꾸기';
+          themeToggle.style.color = '#e6eef6';
+          themeToggle.style.background = 'rgba(255, 255, 255, 0.1)';
+      } else {
+          themeToggle.textContent = '🌑 모드 바꾸기';
+          themeToggle.style.color = '#333';
+          themeToggle.style.background = 'rgba(0, 0, 0, 0.1)';
+      }
+  }
+
+  // 2. 테마 전환 핸들러
+  function toggleTheme() {
+      body.classList.toggle('dark-mode');
+      const newTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+      localStorage.setItem(STORAGE_KEY, newTheme);
+      
+      if (newTheme === 'dark') {
+          themeToggle.textContent = '☀️ 모드 바꾸기';
+          themeToggle.style.color = '#e6eef6';
+          themeToggle.style.background = 'rgba(255, 255, 255, 0.1)';
+      } else {
+          themeToggle.textContent = '🌑 모드 바꾸기';
+          themeToggle.style.color = '#333';
+          themeToggle.style.background = 'rgba(0, 0, 0, 0.1)';
+      }
+  }
+
+  // 3. 이벤트 리스너 연결 및 초기화
+  themeToggle.addEventListener('click', toggleTheme);
+  setInitialTheme(); 
+ </script>
+</body>
+</html>
