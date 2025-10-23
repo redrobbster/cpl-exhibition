@@ -36,24 +36,20 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    /* ★ HEADER 스타일 수정: Flexbox 적용 및 중앙 정렬 */
+    /* HEADER 스타일 */
     header {
       background: var(--header-bg);
       padding: 2rem 1rem;
       position: relative; 
       display: flex; 
-      flex-direction: column; /* 수직으로 배치 */
-      align-items: center; /* 가운데 정렬 */
+      flex-direction: column; 
+      align-items: center; 
     }
-
-    /* ★ 새로 추가: 버튼을 감싸서 오른쪽으로 정렬 */
     .header-controls {
       width: 100%;
-      text-align: right; /* 버튼을 오른쪽으로 정렬 */
-      margin-bottom: 1.5rem; /* 아래 요소와의 간격 */
+      text-align: right; 
+      margin-bottom: 1.5rem; 
     }
-
-    /* ★ '모드 바꾸기' 버튼 스타일 수정: absolute 제거, 일반적인 버튼으로 복귀 */
     #themeToggle {
       padding: 0.5rem 1rem; 
       background: rgba(0,0,0,0.1); 
@@ -61,24 +57,17 @@
       border-radius: 8px; 
       font-weight: 600; 
       cursor: pointer;
-      /* position: absolute; 속성 제거 */
     }
-
-    /* 로고 이미지 스타일 */
     header img {
       width: 150px;
       height: 150px;
       border-radius: 20%;
-      margin: 0; /* margin은 h1에서 조정 */
+      margin: 0; 
     }
-
-    /* 제목 스타일 */
     h1 {
       margin: 1rem 0 0.5rem;
       font-size: 2rem;
     }
-
-    /* 설명 스타일 */
     p {
       max-width: 700px;
       margin: 0.5rem auto;
@@ -93,7 +82,7 @@
     }
     button {
       background: var(--primary-color);
-      color: var(--bg-color); /* 텍스트는 배경색과 반대로 설정 */
+      color: var(--bg-color); 
       border: none;
       padding: 1rem 2rem;
       border-radius: 10px;
@@ -114,6 +103,102 @@
     a:hover {
       text-decoration: underline;
     }
+
+    /* ------------------------------------- */
+    /* ★ 수정 및 추가된 스타일 */
+    /* ------------------------------------- */
+
+    /* 1. 이미지 중앙 정렬을 위한 컨테이너 */
+    .map-container {
+      display: flex; /* Flexbox 활성화 */
+      flex-direction: column; /* 수직 정렬 */
+      align-items: center; /* 수평 중앙 정렬 */
+      text-align: center; /* 텍스트 정렬 */
+      width: 100%; /* 부모 섹션의 너비 사용 */
+    }
+
+    /* 지도 이미지 스타일 (ID로 변경) */
+    .map-container #mapImage {
+        width: 100%;
+        max-width: 500px; /* 초기 최대 크기 설정 (JS로 이 값을 조정) */
+        height: auto;
+        margin: 1rem 0 0.5rem;
+        transition: max-width 0.2s; /* 부드러운 크기 조정을 위한 트랜지션 추가 */
+    }
+
+    /* 2. 아코디언 (Accordion) 스타일 */
+    .accordion-header {
+      cursor: pointer;
+      font-weight: 600;
+      padding: 0.5rem 0;
+      margin-top: 1rem;
+      user-select: none;
+    }
+
+    .accordion-content {
+      max-height: 0; 
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+      padding-left: 1.5rem; 
+    }
+
+    .accordion-content.show {
+      max-height: 500px; 
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .accordion-content p, .accordion-content ul {
+        margin: 0.5rem 0;
+        max-width: none; 
+    }
+    .accordion-content ul {
+        list-style-type: none;
+        padding-left: 0; 
+    }
+    /* 중첩된 아코디언의 들여쓰기 */
+    .accordion-content .accordion {
+        padding-left: 1rem;
+    }
+
+    /* 삼각형 스타일 */
+    .arrow {
+      display: inline-block;
+      transition: transform 0.3s;
+      margin-right: 0.5rem;
+    }
+    .accordion-header.active .arrow {
+      transform: rotate(90deg); 
+    }
+    /* 부원 이름 목록 스타일 */
+    .member-list {
+        padding-left: 1rem;
+        list-style-type: disc; /* 점 리스트로 변경 */
+    }
+    .member-list li {
+        margin: 0.3rem 0;
+    }
+    /* 슬라이더 스타일 */
+    #sizeRange {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 8px;
+        background: var(--primary-color);
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity .2s;
+    }
+    #sizeRange::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--primary-hover);
+        cursor: pointer;
+    }
+
   </style>
 </head>
 <body id="page-body">
@@ -126,41 +211,183 @@
     
     <img src="images/logo.png" alt="CPL 로고">
     <h1>CPL 동아리</h1>
-    <p>Creative Programming League — 프로그래밍을 통해 세상을 바꾸는 대광고등학교의 기술 동아리</p>
+    <p>Creative Programming League — 프로그래밍, 게임개발, 정보보안, 웹개발 등을 자유롭게 배워가는 대광고등학교의 컴퓨터 동아리</p>
   </header>
-
-  <section>
-    <h2>동아리 소개</h2>
-    <p>
-      (예: CPL은 다양한 분야의 창의적인 소프트웨어를 만드는 동아리로, 웹·게임·IoT 등 여러 프로젝트를 진행하고 있습니다.)
-    </p>
-  </section>
 
   <section>
     <h2>오시는 길</h2>
     <p>
-      (예: 과학관 2층 복도 오른쪽 끝 CPL 부스)
+      대광고등학교 본관 1층 2학년 4반 교실
     </p>
-    <p>
-      <a href="https://bbbat17.github.io/Daegwanghighschoolmap/" target="_blank">
-        ▶ 대광고등학교 지도 보기
+    
+    <div class="map-container">
+      <img id="mapImage" src="images/map.jpg" alt="대광고등학교 지도">
+      
+      <div style="margin-top: 1rem; width: 100%; max-width: 500px;">
+        <label for="sizeRange">지도 크기 조정:</label>
+        <input type="range" id="sizeRange" min="50" max="100" value="100" step="5" style="width: 100%;">
+      </div>
+
+      <a href="images/map.jpg" download="대광고등학교_CPL_지도.jpg">
+        ⬇️ 지도 이미지 다운로드
       </a>
-    </p>
+    </div>
+
   </section>
 
+  <section>
+    <h2>동아리 소개</h2>
+    
+    <p>
+      동아리 담당 선생님: <strong>이승현 선생님</strong><br><br>
+      동아리 부장: <strong>남동우 (20710)</strong><br>
+      동아리 차장: <strong>이성화 (20124)</strong>
+    </p>
+    
+    <div class="accordion">
+      <div class="accordion-header">
+        <span class="arrow">▶</span> 게임개발부
+      </div>
+      <div class="accordion-content">
+        <p>부장: <strong>신동윤(20213), 박건우(20312)</strong></p>
+        <div class="accordion sub-accordion">
+            <div class="accordion-header sub-header">
+                <span class="arrow">▶</span> 게임개발부 부원(7)
+            </div>
+            <div class="accordion-content sub-content">
+                <p style="margin-bottom:0;">-1학년(5)-</p>
+                <ul class="member-list">
+                    <li>전휘찬 (10418)</li>
+                    <li>신요한 (10609)</li>
+                    <li>최현석 (10621)</li>
+                    <li>텐키릴 (10622)</li>
+                    <li>한지완 (10623)</li>
+                </ul>
+                <p style="margin-bottom:0;">-2학년(2)-</p>
+                <ul class="member-list">
+                    <li>신동윤 (20213)</li>
+                    <li>박건우 (20312)</li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">
+        <span class="arrow">▶</span> 정보보안부
+      </div>
+      <div class="accordion-content">
+        <p>부장: <strong>김경훈 (20302)</strong></p>
+        <div class="accordion sub-accordion">
+            <div class="accordion-header sub-header">
+                <span class="arrow">▶</span> 정보보안부 부원(4)
+            </div>
+            <div class="accordion-content sub-content">
+                <p style="margin-bottom:0;">-1학년(2)-</p>
+                <ul class="member-list">
+                    <li>주정안 (10322)</li>
+                    <li>정재훈 (10529)</li>
+                </ul>
+                <p style="margin-bottom:0;">-2학년(2)-</p>
+                <ul class="member-list">
+                    <li>김경훈 (20302)</li>
+                    <li>최민석 (20226)</li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">
+        <span class="arrow">▶</span> 웹 개발부
+      </div>
+      <div class="accordion-content">
+        <p>부장: <strong>이성화 (20124)</strong></p>
+        <div class="accordion sub-accordion">
+            <div class="accordion-header sub-header">
+                <span class="arrow">▶</span> 웹 개발부 부원(7)
+            </div>
+            <div class="accordion-content sub-content">
+                <p style="margin-bottom:0;">-1학년(4)-</p>
+                <ul class="member-list">
+                    <li>이현우 (10329)</li>
+                    <li>이준민 (10414)</li>
+                    <li>현주혁 (10424)</li>
+                    <li>홍시우 (10523)</li>
+                </ul>
+                <p style="margin-bottom:0;">-2학년(3)-</p>
+                <ul class="member-list">
+                    <li>이성화 (20124)</li>
+                    <li>박사무엘 (20206)</li>
+                    <li>최동주 (20225)</li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header">
+        <span class="arrow">▶</span> 전체인원
+      </div>
+      <div class="accordion-content">
+        <div class="accordion sub-accordion">
+            <li>전체 인원(19)</li>
+            <div class="accordion-header sub-header">
+                <span class="arrow">▶</span> 1학년(11)
+            </div>
+            <div class="accordion-content sub-content">
+                <ul class="member-list">
+                    <li>주정안 (10322)</li>
+                    <li>이현우 (10329)</li>
+                    <li>이준민 (10414)</li>
+                    <li>전휘찬 (10418)</li>
+                    <li>현주혁 (10424)</li>
+                    <li>홍시우 (10523)</li>
+                    <li>정재훈 (10529)</li>
+                    <li>신요한 (10609)</li>
+                    <li>최현석 (10621)</li>
+                    <li>텐키릴 (10622)</li>
+                    <li>한지완 (10623)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="accordion sub-accordion">
+            <div class="accordion-header sub-header">
+                <span class="arrow">▶</span> 2학년(8)
+            </div>
+            <div class="accordion-content sub-content">
+                <ul class="member-list">
+                    <li>이성화 (20124)</li>
+                    <li>박사무엘 (20206)</li>
+                    <li>신동윤 (20213)</li>
+                    <li>최동주 (20225)</li>
+                    <li>최민석 (20226)</li>
+                    <li>김경훈 (20302)</li>
+                    <li>박건우 (20312)</li>
+                    <li>남동우 (20710)</li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  
   <div style="text-align:center;">
     <button onclick="location.href='projects.html'">🎨 작품 보기</button>
   </div>
   
   <script>
     // **********************************
-    // ★ 테마 전환 기능 (projects.html과 공유)
+    // 1. 테마 전환 기능 
     // **********************************
     const body = document.getElementById('page-body');
     const themeToggle = document.getElementById('themeToggle');
     const STORAGE_KEY = 'cplThemeMode';
 
-    // 1. 초기 테마 설정
     function setInitialTheme() {
         const savedTheme = localStorage.getItem(STORAGE_KEY) || 'light';
         if (savedTheme === 'dark') {
@@ -175,7 +402,6 @@
         }
     }
 
-    // 2. 테마 전환 핸들러
     function toggleTheme() {
         body.classList.toggle('dark-mode');
         const newTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
@@ -192,9 +418,41 @@
         }
     }
 
-    // 3. 이벤트 리스너 연결 및 초기화
     themeToggle.addEventListener('click', toggleTheme);
     setInitialTheme(); 
+
+    // **********************************
+    // 2. 아코디언 기능 
+    // **********************************
+    function toggleAccordion(header) {
+        const content = header.nextElementSibling;
+        header.classList.toggle('active');
+        if (content.classList.contains('show')) {
+            content.classList.remove('show');
+        } else {
+            content.classList.add('show');
+        }
+    }
+
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => toggleAccordion(header));
+    });
+
+
+    // **********************************
+    // 3. 지도 이미지 크기 조정 기능 
+    // **********************************
+    const mapImage = document.getElementById('mapImage');
+    const sizeRange = document.getElementById('sizeRange');
+
+    if (mapImage && sizeRange) {
+        sizeRange.addEventListener('input', (e) => {
+            // 슬라이더 값을 퍼센트로 이미지의 최대 너비(max-width)에 적용
+            const percentage = e.target.value;
+            mapImage.style.maxWidth = `${percentage}%`;
+        });
+    }
+
   </script>
 </body>
 </html>
