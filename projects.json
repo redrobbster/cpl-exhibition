@@ -57,10 +57,37 @@
     "title": "쪽지를 찾아라",
     "type": "web",
     "description": "학교 곳곳에 숨겨진 노란색 쪽지를 찾아서 2-4반으로 오세요 간식을 드립니다! 어쩌면 더 좋은 경품을 얻을지도...?",
-    "creators": [{"name": "이성화", "id": "10124"},{"name": "김경훈", "id": "20302"}],
+    "creators": [{"name": "이성화", "id": "20124"},{"name": "김경훈", "id": "20302"}],
     "preview_poster": "images/team7(2).png",
     "poster": "images/team7(1).png",
     "info": ""
+  },
+  {
+    "title": "에임 트레이닝",
+    "type": "web",
+    "description": "마우스로 ???의 얼굴을 클릭해 점수를 획득하는 게임사이트",
+    "creators": [{"name": "이현우", "id": "10329"}],
+    "preview_poster": "images/team8(2).png",
+    "poster": "images/team8(1).png",
+    "info": ""
+  },
+  {
+    "title": "3D Tetris",
+    "type": "game",
+    "description": "2차원 테트리스? 3차원으로 더욱 발전된 테트리스를 경험하라",
+    "creators": [{"name": "전휘찬", "id": "10418"}],
+    "preview_poster": "images/team9(2).jpg",
+    "poster": "images/team9(1).jpg",
+    "info": "위치 준비 중"
+  },
+  {
+    "title": "dghGPT",
+    "type": "web",
+    "description": "dghGPT로 AI를 이용해 저장해둔 데이터를 학습하면 질문에 대답한느 챗봇, 언제 어디서나 열 수 있습니다.",
+    "creators": [{"name": "현주혁", "id": "10424"}],
+    "preview_poster": "images/team10(2).jpg",
+    "poster": "images/team10(1).png",
+    "info": "위치 준비 중"
   }
 ]
 
