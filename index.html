@@ -119,8 +119,9 @@
 
     /* 지도 이미지 스타일 (ID로 변경) */
     .map-container #mapImage {
-        width: 100%;
-        max-width: 500px; /* 초기 최대 크기 설정 (JS로 이 값을 조정) */
+        /* max-width는 슬라이더로 조절됨. 현재 500px이 100% 기준이 됨. */
+        width: 100%; 
+        max-width: 500px; /* 초기 최대 크기 설정 (JS로 이 값을 100%~500%까지 조정) */
         height: auto;
         margin: 1rem 0 0.5rem;
         transition: max-width 0.2s; /* 부드러운 크기 조정을 위한 트랜지션 추가 */
@@ -224,8 +225,8 @@
       <img id="mapImage" src="images/map.jpg" alt="대광고등학교 지도">
       
       <div style="margin-top: 1rem; width: 100%; max-width: 500px;">
-        <label for="sizeRange">지도 크기 조정:</label>
-        <input type="range" id="sizeRange" min="50" max="100" value="100" step="5" style="width: 100%;">
+        <label for="sizeRange">지도 크기 조정 (100% ~ 500%):</label>
+        <input type="range" id="sizeRange" min="100" max="500" value="100" step="10" style="width: 100%;">
       </div>
 
       <a href="images/map.jpg" download="대광고등학교_CPL_지도.jpg">
@@ -447,7 +448,7 @@
 
     if (mapImage && sizeRange) {
         sizeRange.addEventListener('input', (e) => {
-            // 슬라이더 값을 퍼센트로 이미지의 최대 너비(max-width)에 적용
+            // 슬라이더 값이 100~500으로 변경되어 mapImage.style.maxWidth를 100%~500%로 설정합니다.
             const percentage = e.target.value;
             mapImage.style.maxWidth = `${percentage}%`;
         });
