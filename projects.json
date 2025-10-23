@@ -85,11 +85,12 @@
     "type": "web",
     "description": "dghGPT로 AI를 이용해 저장해둔 데이터를 학습하면 질문에 대답한느 챗봇, 언제 어디서나 열 수 있습니다.",
     "creators": [{"name": "현주혁", "id": "10424"}],
-    "preview_poster": "images/team10(2).jpg",
+    "preview_poster": "images/team10(2).png",
     "poster": "images/team10(1).png",
     "info": "https://script.google.com/macros/s/AKfycbxLovCR7MoWCGm6KGTgR02LGe6uqQ9BxXLi0FS5bEyYndi-i_9H3LQJYvEgASYso4Je/exec"
   }
 ]
+
 
 
 
