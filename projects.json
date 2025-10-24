@@ -6,7 +6,7 @@
     "creators": [{"name": "한지완", "id": "10623"}],
     "preview_poster": "images/team1(2).png",
     "poster": "images/team1(1).png",
-    "info": "위치 준비 중"
+    "info": "A1"
   },
     {
     "title": "대광고 멸망전",
@@ -15,12 +15,12 @@
     "creators": [{"name": "신요한", "id": "10609"},{"name": "박건우", "id": "20312"}],
     "preview_poster": "images/team2(2).png",
     "poster": "images/team2(1).png",
-    "info": "위치 준비 중"
+    "info": "S1"
   },
   {
     "title": "대광고 지도",
     "type": "web",
-    "description": "대광고등학교의 지도를 html과 css만을 이용해 만들었습니다",
+    "description": "대광고등학교의 지도를 html과 css만을 이용해 만들었습니다 (스탠딩)",
     "creators": [{"name": "이준민", "id": "10414"}],
     "preview_poster": "images/team3(2).jpg",
     "poster": "images/team3(1).jpg",
@@ -33,12 +33,12 @@
     "creators": [{"name": "박사무엘", "id": "20206"}, {"name": "최동주", "id": "20225"}],
     "preview_poster": "images/team4(2).png",
     "poster": "images/team4(1).png",
-    "info": "위치 준비 중"
+    "info": "A4"
   },
   {
     "title": "반응속도 테스트",
     "type": "web",
-    "description": "빛보다 빠른 당신의 반응속도를 테스트해 보세요",
+    "description": "빛보다 빠른 당신의 반응속도를 테스트해 보세요 (B1-B2)",
     "creators": [{"name": "홍시우", "id": "10523"}],
     "preview_poster": "images/team5(2).jpg",
     "poster": "images/team5(1).jpg",
@@ -51,7 +51,7 @@
     "creators": [{"name": "최현석", "id": "10621"}],
     "preview_poster": "images/team6(2).png",
     "poster": "images/team6(1).png",
-    "info": "https://naver.me/GmtZTzRR"
+    "info": "A2"
   },
   {
     "title": "쪽지를 찾아라",
@@ -65,11 +65,11 @@
   {
     "title": "에임 트레이닝",
     "type": "web",
-    "description": "마우스로 ???의 얼굴을 클릭해 점수를 획득하는 게임사이트",
+    "description": "마우스로 ???의 얼굴을 클릭해 점수를 획득하는 게임사이트(A3)",
     "creators": [{"name": "이현우", "id": "10329"}],
     "preview_poster": "images/team8(2).png",
     "poster": "images/team8(1).png",
-    "info": ""
+    "info": "https://maenson09.github.io/aiming/"
   },
   {
     "title": "3D Tetris",
@@ -78,18 +78,19 @@
     "creators": [{"name": "전휘찬", "id": "10418"}],
     "preview_poster": "images/team9(2).jpg",
     "poster": "images/team9(1).jpg",
-    "info": "위치 준비 중"
+    "info": "A5"
   },
   {
     "title": "dghGPT",
     "type": "web",
-    "description": "dghGPT로 AI를 이용해 저장해둔 데이터를 학습하면 질문에 대답하는 챗봇, 언제 어디서나 열 수 있습니다.",
+    "description": "dghGPT로 AI를 이용해 저장해둔 데이터를 학습하면 질문에 대답하는 챗봇, 언제 어디서나 열 수 있습니다. (B1-B2)",
     "creators": [{"name": "현주혁", "id": "10424"}],
     "preview_poster": "images/team10(2).png",
     "poster": "images/team10(1).png",
     "info": "https://script.google.com/a/macros/dgh.hs.kr/s/AKfycbwPmyfYipY-mPZHuA85h_SSgpsLbm760GtvOrQ4AKqbb6LLA-0szfBoTmAPLZf75Rv4/exec"
   }
 ]
+
 
 
 
